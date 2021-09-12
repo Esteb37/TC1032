@@ -1,4 +1,4 @@
-﻿// MAIN PROGRAM
+// MAIN PROGRAM
 ORG 100 	/ Initial Memory Location where program starts
 JnS SubrMin	/ Llamada a subrutina para encontrar valor mínimo
 JnS SubrMax	/ Llamada a subrutina para encontrar valor máximo
@@ -89,8 +89,8 @@ nmed, Dec 3 / Cantidad de datos (copia para subrutina para obtener mediana)
 nmean, Dec 0 / Cantidad de datos promediados
 nmean2, Dec 50 / Cantidad de datos que faltan por promediar 
 mean, Dec 0 / Valor del promedio
-dividend, Dec 0
-division, Dec 0
+dividend, Dec 0 / Variable para guardar el dividendo para la función de división
+division, Dec 0 / Variable para guardar el resultado de la función de división
 
         // SUBROUTINES
 SubrMin,	Hex 0		/ Subroutine 1, return address saved here
@@ -147,9 +147,9 @@ SubrMean,   Hex 0 / Subroutine 3, return address saved here
         LoadI addr3 / Se carga de forma indirecta el valor de addr3
         Store mean / Se guarda en el promedio
         
-Loop3,  Load addr3
-        Add one
-        Store addr3
+Loop3,  Load addr3 / Obtener la dirección del último valor
+        Add one / Pasar a la siguiente dirección
+        Store addr3 / Guardar la nueva dirección
         Load nmean / Se obtiene la cantidad de datos que se han promediado
         Add one / Se le suma 1 a N
         Store nmean / Se guarda N
@@ -157,24 +157,24 @@ Loop3,  Load addr3
         Subt one / Se resta uno
         Store nmean2 / Se guarda
         Skipcond 800 / Si le faltan datos por recorrer, salto de línea
-        JumpI SubrMean
-        Load mean
-        Store dividend
+        JumpI SubrMean / Terminar subrutina
+        Load mean /Cargar el promedio móvil
+        Store dividend / Guardarlo como el dividendo
         Clear
-        Store division
-        JnS divide
-        Load mean
-		Subt division
-        Store mean
-        LoadI addr3
-        Store dividend
+        Store division / Limpiar el resultado de la división
+        JnS divide / Dividir promedio entre número de datos promediados
+        Load mean / Cargar el promedio
+		Subt division / Restarle el resultado de la división
+        Store mean / Guardar el promedio
+        LoadI addr3 / Cargar el siguiente valor a promediar
+        Store dividend / Guardarlo como el dividendo 
         Clear
-        Store division
-        JnS divide
-        Load mean
-        Add division
-        Store mean
-        Jump Loop3
+        Store division / Limpiar el resultado de la división
+        JnS divide / Dividir el valor a promediar entre el número de datos promediados
+        Load mean / Cargar promedio móvil
+        Add division / Sumarle el resultado de la división
+        Store mean / Guardar promedio
+        Jump Loop3 / Reiniciar
 
 divide, Hex 0
 LoopDivide, Load dividend / Se carga el resultado de la suma de todos los números

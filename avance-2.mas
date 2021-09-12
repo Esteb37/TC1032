@@ -83,9 +83,9 @@ temp, Hex 0 / Valor temporal
 pos, Dec 0 / Valor posición
 nmin, Dec 50 / Cantidad de datos
 nmax, Dec 50 / Cantidad de datos (copia para subrutina para obtener máximo)
-nmed1, Dec 5 / Cantidad de datos (copia para subrutina para obtener mediama)
-nmed2, Dec 5 / Cantidad de datos (copia para subrutina para obtener mediana)
-nmed, Dec 3 / Cantidad de datos (copia para subrutina para obtener mediana)
+nmed1, Dec 49 / Cantidad de datos (copia para subrutina para obtener mediama)
+nmed2, Dec 49 / Cantidad de datos (copia para subrutina para obtener mediana)
+nmed, Dec 26 / Cantidad de datos (copia para subrutina para obtener mediana)
 nmean, Dec 0 / Cantidad de datos promediados
 nmean2, Dec 50 / Cantidad de datos que faltan por promediar 
 mean, Dec 0 / Valor del promedio
